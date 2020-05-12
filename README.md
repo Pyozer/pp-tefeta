@@ -12,7 +12,7 @@
 * [Bonus](#bonus)
 * [Credits](#credits)
 
-## <a name='run'>Run project</a>
+## <a name='run'>💻 Run project</a>
 
 Project made using Dart ❤️. You have two possibilities to run it.
 
@@ -45,7 +45,7 @@ Hi, here are some rules to carry out this story oav;
 * You **MUST** create a file called `.author.json` with your fullname
 
 ```sh
-~/ts-baratie ❯❯❯ cat -e .author.json
+~/ts-tefeta ❯❯❯ cat -e .author.json
 {
   "fullname" : "John H. Conway"
 }$
@@ -108,7 +108,7 @@ We'll check the times of your algo and you'll get points depending of your posit
 0.31 real         0.03 user         0.25 sys
 ```
 
-> The time will be calculate after Docket environment setup of course ;)
+> The time will be calculate after Docker environment setup of course ;)
 
 ## <a name='bonus'>🦄 Bonus</a>
 
