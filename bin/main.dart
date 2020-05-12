@@ -14,7 +14,7 @@ void main(List<String> arguments) async {
       errorExit('File is empty');
     }
 
-    final fileLines = fileContent.split('\n');
+    final fileLines = fileContent.trim().split('\n');
     if (fileLines.length < 2) {
       errorExit(
         'File must have minimum 2 lines, size (ex: 10x20) and maze in ascii',
