@@ -4,14 +4,40 @@
 
 ## <a name='TOC'>🐼 Summary</a>
 
+* [Run project](#run)
 * [Rules](#rules)
 * [Overview](#overview)
 * [Story](#story)
-* [Postlude](#postlude)
+* [Challenge](#challenge)
 * [Bonus](#bonus)
 * [Credits](#credits)
 
-## <a name='overview'>🦊 Rules</a>
+## <a name='run'>Run project</a>
+
+Project made using Dart ❤️. You have two possibilities to run it.
+
+Before all, go to root of project.
+
+#### With Dart installed on your computer
+
+You can run it directly without build it, just execute: `dart bin/main.dart ./data/maps/rect.01.map`
+
+You can also build it in binary and run it:
+
+* `dart2native bin/main.dart -o build/app`
+* `./build/app ./data/maps/rect.01.map`
+
+
+#### Using Docker
+
+If you don't want to install Dart, you can run it using Docker.
+
+First, you have to build the image using: `docker build -t pp-tefeta .`
+
+After, run it with: `docker run pp-tefeta ./data/maps/rect.01.map`
+
+
+## <a name='rules'>🦊 Rules</a>
 
 Hi, here are some rules to carry out this story oav;
 
