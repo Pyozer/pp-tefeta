@@ -1,7 +1,11 @@
+import 'package:colorize/colorize.dart';
+
 class PathFinder {
   final String enterSymbol;
   final String exitSymbol;
   final String wallSymbol;
+  final String pathFindSymbol;
+  final String wrongPathSymbol;
   List<List<String>> mapGrid;
   int maxX;
   int maxY;
@@ -12,8 +16,10 @@ class PathFinder {
     List<String> mapLines,
     this.enterSymbol,
     this.exitSymbol,
-    this.wallSymbol,
-  ) {
+    this.wallSymbol, [
+    this.pathFindSymbol = '.',
+    this.wrongPathSymbol = 'X',
+  ]) {
     maxX = width - 1;
     maxY = height - 1;
     mapGrid = mapLines.map((e) => e.split('')).toList();
@@ -26,7 +32,8 @@ class PathFinder {
     if (start == null) {
       throw 'Cannot find enter point label by $enterSymbol';
     }
-    print('Start at x:${start[0]}, y:${start[1]}');
+    print('Start at x:${start[0]} y:${start[1]}');
+    print('Size ${maxX}x${maxY}\n');
     return _findPath(start[0], start[1]);
   }
 
@@ -90,10 +97,10 @@ class PathFinder {
   String _grid(int x, int y) => mapGrid[y][x];
 
   /// Add a symbol to specify correct path at a specific point
-  void _markPath(int x, int y) => _markPathSymbol(x, y, '.');
+  void _markPath(int x, int y) => _markPathSymbol(x, y, pathFindSymbol);
 
   /// Add a symbol to specify wrong path at a specific point
-  void _unmarkPath(int x, int y) => _markPathSymbol(x, y, '/');
+  void _unmarkPath(int x, int y) => _markPathSymbol(x, y, wrongPathSymbol);
 
   /// Add a symbol at a specific point
   void _markPathSymbol(int x, int y, String symbol) {
@@ -126,6 +133,29 @@ class PathFinder {
     return null;
   }
 
+  Colorize _colorizeWrongPath() => Colorize(wrongPathSymbol)..red();
+  Colorize _colorizeWall() => Colorize(' ')..bgWhite();
+  Colorize _colorizePath(String symbol) => Colorize(symbol)
+    ..bold()
+    ..green();
+
+  String getGridLegend() => '''Legend:
+  ${_colorizePath(enterSymbol)}: Enter point
+  ${_colorizePath(exitSymbol)}: Exit point
+  ${_colorizePath(pathFindSymbol)}: Final path found to exit
+  ${_colorizeWrongPath()}: Wrong path tried during find process
+  ${_colorizeWall()}: Wall''';
+
+  String getGridString() => mapGrid
+      .map((e) => e.join(''))
+      .join('\n')
+      .replaceFirst(enterSymbol, 'enter') // Change enterSymbol (case is '1') to avoid conflict with colorize
+      .replaceFirst(exitSymbol, '${_colorizePath(exitSymbol)}')
+      .replaceFirst('enter', '${_colorizePath(enterSymbol)}')
+      .replaceAll(pathFindSymbol, '${_colorizePath(pathFindSymbol)}')
+      .replaceAll(wrongPathSymbol, '${_colorizeWrongPath()}')
+      .replaceAll(wallSymbol, '${_colorizeWall()}');
+
   @override
-  String toString() => mapGrid.map((e) => e.join('')).join('\n');
+  String toString() => '${getGridLegend()}\n\n${getGridString()}';
 }

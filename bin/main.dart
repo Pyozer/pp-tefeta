@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:colorize/colorize.dart';
 import 'package:pp_tefeta/path_finder.dart';
 
 void main(List<String> arguments) async {
@@ -33,11 +34,12 @@ void main(List<String> arguments) async {
       );
     }
 
-    final pathFinder = PathFinder(width, height, gridRows, '1', '2', '*');
+    final pathFinder = PathFinder(width, height, gridRows, '1', '2', '*', '.');
     final isFind = pathFinder.startFind();
-    
-    if (isFind) {
-      print(pathFinder.toString());
+
+    print(pathFinder.toString());
+    if (!isFind) {
+      errorExit('Cannot find path to exit :/');
     }
   } catch (e) {
     errorExit('$e');
@@ -45,6 +47,7 @@ void main(List<String> arguments) async {
 }
 
 void errorExit(String err) {
-  stderr.writeln('Error: $err');
+  final colorize = Colorize('Error: $err')..red();
+  stderr.writeln(colorize);
   exit(2);
 }
