@@ -4,6 +4,8 @@ import 'package:colorize/colorize.dart';
 import 'package:pp_tefeta/path_finder.dart';
 
 void main(List<String> arguments) async {
+  final startTime = DateTime.now();
+
   if (arguments.isEmpty) {
     errorExit('Missing file path in argument');
   }
@@ -38,6 +40,8 @@ void main(List<String> arguments) async {
     final isFind = pathFinder.startFind();
 
     print(pathFinder.toString());
+
+    print('Executed in ${DateTime.now().difference(startTime).inMilliseconds}ms');
     if (!isFind) {
       errorExit('Cannot find path to exit :/');
     }

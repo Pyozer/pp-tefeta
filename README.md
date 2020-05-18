@@ -24,8 +24,8 @@ You can run it directly without build it, just execute: `dart bin/main.dart ./da
 
 You can also build it in binary and run it:
 
-* `dart2native bin/main.dart -o build/app`
-* `./build/app ./data/maps/rect.01.map`
+* `dart2native bin/main.dart -o bin/app`
+* `./bin/app ./data/maps/rect.01.map`
 
 
 #### Using Docker
@@ -35,6 +35,8 @@ If you don't want to install Dart, you can run it using Docker.
 First, you have to build the image using: `docker build -t pp-tefeta .`
 
 After, run it with: `docker run pp-tefeta ./data/maps/rect.01.map`
+
+<img alt="Render result" src="./render.gif" width="500">
 
 
 ## <a name='rules'>🦊 Rules</a>

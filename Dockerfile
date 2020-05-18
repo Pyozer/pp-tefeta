@@ -7,6 +7,6 @@ RUN pub get
 ADD . ./
 RUN pub get --offline
 
-RUN mkdir -p build && dart2native bin/main.dart -o build/app
+RUN dart2native bin/main.dart -o bin/app
 
-ENTRYPOINT ["./build/app"]
+ENTRYPOINT ["./bin/app"]
